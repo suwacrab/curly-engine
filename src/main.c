@@ -122,10 +122,11 @@ void update()
 
 void draw_time()
 {
+	u32 frate = kami->framerate;
 	u32 time = kami->time;
-	u32 secs = time/60;
+	u32 secs = time/frate;
 	u32 mins = secs/60;
-	char colon = ((time/30)&1) ? ':' : ' ';
+	char colon = ((time/(frate/2))&1) ? ':' : ' ';
 	char teststr[0x20];
 	sprintf(teststr,"TIME: %02d%c%02d",mins,colon,secs%60);
 	// draw small border around text
