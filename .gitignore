@@ -3,3 +3,4 @@
 *.o
 mokou
 fcee
+gpush.lua
