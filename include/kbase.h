@@ -38,17 +38,15 @@ INLINE bool in_range(u32 x,u32 min,u32 max) // returns if x is between min & max
 { return (x >= min) && (x <= max); }
 
 /*	--	IO operations	--	*/
-INLINE void fread_u8(u8 *pntr,FILE *f)
-{
-	fread(pntr,sizeof(u8),1,f); // read byte
-}
-INLINE void fread_u16(u16 *pntr,FILE *f)
+INLINE void fread_u8(u8 *pntr,FILE *f) // read little-endian u8 value from file
+{ fread(pntr,sizeof(u8),1,f); }
+INLINE void fread_u16(u16 *pntr,FILE *f) // read little-endian u16 value from file
 {
 	u8 b1; fread_u8(&b1,f); // read 1st byte
 	u8 b2; fread_u8(&b2,f); // read 2nd byte
 	(*pntr) = b1 | (b2<<8);
 }
-INLINE void fread_u32(u32 *pntr,FILE *f)
+INLINE void fread_u32(u32 *pntr,FILE *f) // read little-endian u32 value from file
 {
 	u16 hw1; fread_u16(&hw1,f);
 	u16 hw2; fread_u16(&hw2,f);
@@ -125,21 +123,11 @@ INLINE void vec2_mulf(VEC2 *a,VEC2 *b,u32 dec)
 	a->y = sfix_mul(a->y,b->y,dec);
 }
 
-/*	--	string ops	--	*/
+// -- string conversion
 INLINE void vec3_str(VEC3 *a,char *str)
 {	sprintf(str,"[%d,%d,%d]",a->x,a->y,a->z);	}
 INLINE void vec2_str(VEC2 *a,char *str)
 {	sprintf(str,"[%d,%d]",a->x,a->y);	}
-INLINE char *vec3_nstr(VEC3 *a)
-{ 
-	char *str = malloc(sizeof(char)*0x10); 
-	vec3_str(a,str); return str; 
-}
-INLINE char *vec2_nstr(VEC2 *a)
-{ 
-	char *str = malloc(sizeof(char)*0x10); 
-	vec2_str(a,str); return str; 
-}
 
 /*	-- framebuffer ops	--	*/
 INLINE void fb_set_u4(u8 *m,u32 w,u32 x,u32 y,u32 d)
