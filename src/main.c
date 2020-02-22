@@ -127,7 +127,7 @@ void draw_time()
 	// draw small border around text
 	u32 len = (u32)(strlen(teststr));
 	mokou_rect(fuji,7,7,2+(len*4),8, 8);
-	kosuzu_blit(borefont,teststr,fuji,8,8,len);
+	kosuzu_blit(borefont,teststr,fuji,8,8,len );
 }
 
 void draw()
