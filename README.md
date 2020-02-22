@@ -1,5 +1,5 @@
 # curly engine
-this is a small,crappy framework for handling image drawing with 256-color images.
+this is a small, crappy framework for handling image drawing with 256-color images.
 
 ## subsystems:
 * mokou (mokou.h, mokou.c)
