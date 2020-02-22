@@ -18,6 +18,8 @@ keine *kami = NULL;
 typedef struct { char *fname;mokou *img; } mokou_img;
 mokou_img img_bank[] = {
 	{ "gfx/testtile.png",NULL },
+	{ "gfx/kikaiko.png",NULL },
+	{ "gfx/kikaiko-says.png",NULL },
 	{ NULL,NULL }
 };
 kosuzu font_bank[] = {
@@ -126,7 +128,7 @@ void draw_time()
 	char teststr[0x20];
 	sprintf(teststr,"TIME: %02d%c%02d",mins,colon,secs%60);
 	// draw small border around text
-	u32 len = (u32)(strlen(teststr));
+	u32 len = (u32)strlen(teststr);
 	mokou_rect(fuji,7,7,2+(len*4),8, 8);
 	kosuzu_blit(borefont,teststr,fuji,8,8,len);
 }
