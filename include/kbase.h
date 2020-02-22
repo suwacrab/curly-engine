@@ -31,7 +31,7 @@ typedef int64_t s64;
 typedef u8 byte;
 typedef u8 pix8;
 
-/*	--	misc	--	*/
+/*	--	ranges	--	*/
 INLINE u32 clamp(u32 x,u32 min,u32 max) // clamps x between min & max
 { return (x < min) ? min : (x > max) ? max : x; } 
 INLINE bool in_range(u32 x,u32 min,u32 max) // returns if x is between min & max
@@ -60,10 +60,7 @@ INLINE void fwrite_u8(u8 n,FILE *f) // write little-endian u8 value to file
 INLINE void fwrite_u16(u16 n,FILE *f) // write little-endian u16 value to file
 { fwrite_u8(n&0xFF,f); fwrite_u8(n>>8,f); }
 INLINE void fwrite_u32(u32 n,FILE *f) // write little-endian u32 value to file
-{
-	fwrite_u16(n&0xFFFF,f);
-	fwrite_u16(n>>16,f);
-}
+{ fwrite_u16(n&0xFFFF,f); fwrite_u16(n>>16,f); }
 
 
 /*	--	string types	--	*/
