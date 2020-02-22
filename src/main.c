@@ -68,7 +68,7 @@ int main()
 
 void init_kene()
 {
-	// main sdl setup
+	// main mokokene setup
 	kami = malloc(sizeof(keine));
 	fuji = malloc(sizeof(mokou));
 	keine_init(kami,"mokokene engine",NULL,WIDTH,HEIGHT);
