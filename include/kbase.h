@@ -56,14 +56,9 @@ INLINE void fread_u32(u32 *pntr,FILE *f)
 }
 
 INLINE void fwrite_u8(u8 n,FILE *f) // write little-endian u8 value to file
-{
-	fwrite(&n,sizeof(u8),1,f);
-}
+{ fwrite(&n,sizeof(u8),1,f);}
 INLINE void fwrite_u16(u16 n,FILE *f) // write little-endian u16 value to file
-{
-	fwrite_u8(n&0xFF,f);
-	fwrite_u8(n>>8,f);
-}
+{ fwrite_u8(n&0xFF,f); fwrite_u8(n>>8,f); }
 INLINE void fwrite_u32(u32 n,FILE *f) // write little-endian u32 value to file
 {
 	fwrite_u16(n&0xFFFF,f);

@@ -140,16 +140,12 @@ void draw()
 	mokou_clear(fuji,7);
 	// bg tile drawing
 	fuji->fillp = fade_p[7];
-	for(u32 y=0; y<(HEIGHT>>4); y++)
-	{
-		for(u32 x=0; x<(WIDTH>>4); x++)
+	for(u32 y=0; y<HEIGHT; y += 16)
+		for(u32 x=0; x<WIDTH; x += 16)
 		{
-			u32 lx = x*16;
-			u32 ly = y*16;
 			SDL_Rect imgrect = { 16,0,16,16 };
-			mokou_blit(img_bank[0].img,&imgrect,fuji,lx,ly);
+			mokou_blit(img_bank[0].img,&imgrect,fuji,x,y);
 		}
-	}
 	// ui drawing
 	fuji->fillp = 0xFFFF;
 	draw_time();
