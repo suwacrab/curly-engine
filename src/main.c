@@ -30,9 +30,8 @@ kosuzu font_bank[] = {
 kosuzu *borefont = &font_bank[0];
 kosuzu *bobofont = &font_bank[1];
 // misc vars
-u32 revs = 0;
-u32 fade_ind = 15;
-const u16 fade_p[0x10] = {
+u32 revs = 0; // revision number
+	const u16 fade_p[0x10] = { // LUT for fillp fading.
 	0x8000,0x8020,0xA020,0xA0A0,
 	0xA4A0,0xA5A0,0xA5A4,0xA5A5,
 	0xADA5,0xAFA5,0xAFAD,0xAFAF,
