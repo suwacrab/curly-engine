@@ -11,7 +11,7 @@ void keine_init(keine *kami,char *caption,char *icon,u32 w,u32 h)
 	IMG_Init(IMG_INIT_PNG);
 	// initializing surfaces
 	s32 window_flags = SDL_SWSURFACE | SDL_HWPALETTE;
-	kami->window = SDL_SetVideoMode(w,h,8,window_flags);
+	kami->window = SDL_SetVideoMode(w,h,32,window_flags);
 	kami->mainfb = SDL_CreateRGBSurface(0,w,h,8, 0,0,0,0);
 	kami->w = w; kami->h = h;
 	SDL_WM_SetCaption(caption,icon);
@@ -27,7 +27,6 @@ void keine_init(keine *kami,char *caption,char *icon,u32 w,u32 h)
 void keine_initpal(keine *kami,RGBA32 *pal,u32 pallen)
 {
 	s32 palflags = SDL_LOGPAL;
-	SDL_SetPalette(kami->window,palflags,(SDL_Color*)pal,0,pallen);
 	SDL_SetPalette(kami->mainfb,palflags,(SDL_Color*)pal,0,pallen);
 }
 
@@ -35,9 +34,7 @@ void keine_initpal(keine *kami,RGBA32 *pal,u32 pallen)
 RGBA32 *keine_loadhexpal(char *fname,u32 pallen)
 {
 	// init
-	size_t palsize = sizeof(RGBA32)*pallen;
-	RGBA32 *pal = malloc(palsize);
-	memset(pal,0,palsize);
+	RGBA32 *pal = calloc(pallen,sizeof(RGBA32));
 	// loading
 	FILE *palfile = fopen(fname,"r");
 	for(u32 c=0; c<pallen; c++)

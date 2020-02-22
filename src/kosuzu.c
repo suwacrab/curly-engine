@@ -34,3 +34,4 @@ void kosuzu_blit(kosuzu *moto,char *text,mokou *dst,u32 x,u32 y,u32 len)
 		}
 	}
 }
+

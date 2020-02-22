@@ -86,6 +86,7 @@ void init_kene()
 		mokou_img *curimg = &img_bank[imgid]; // the current image struct
 		curimg->img = malloc(sizeof(mokou)); // mallocate it's image...
 		mokou_loadimg(curimg->img,kami->mainfb,curimg->fname); // then load using keine's fb.
+		printf("loaded img '%s'! [ID: %02X]\n",curimg->fname,imgid);
 		imgid++;
 	}
 	// font loading

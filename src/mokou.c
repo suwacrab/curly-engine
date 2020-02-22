@@ -21,7 +21,8 @@ void mokou_loadimg(mokou *fuji,SDL_Surface *sdl_fb,char *fname)
 	// loading, convertin
 	SDL_Surface *fimg = NULL;
 	fimg = IMG_Load(fname);
-	printf("loaded image '%s'! (%d)\n",fname,fimg==NULL);
+	if(fimg == NULL)
+	{ printf("couldn't load image '%s': %s\n",fname,IMG_GetError()); }
 	u32 w = fimg->w;
 	u32 h = fimg->h;
 	fimg = SDL_ConvertSurface(fimg,sdl_fb->format,0);
