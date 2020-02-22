@@ -96,6 +96,7 @@ void init_kene()
 	}
 }
 
+// function to increment version number & save to file
 void inc_version()
 {
 	FILE *rev_file = fopen("revs.bin","r+");
