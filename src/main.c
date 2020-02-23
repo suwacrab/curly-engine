@@ -5,11 +5,12 @@
 
 // standard1 is 320x240
 // standard2 is 256x192
+// stamdard3 is 160x144
 // widescreen1 is 480x270
 // widescreen2 is 424x240
 // widescreen3 is 384x216
-#define WIDTH (320)
-#define HEIGHT (240)
+#define WIDTH (112)
+#define HEIGHT (160)
 
 // phoenix vars
 mokou *fuji = NULL;
@@ -18,8 +19,6 @@ keine *kami = NULL;
 typedef struct { char *fname;mokou *img; } mokou_img;
 mokou_img img_bank[] = {
 	{ "gfx/testtile.png",NULL },
-	{ "gfx/kikaiko.png",NULL },
-	{ "gfx/kikaiko-says.png",NULL },
 	{ NULL,NULL }
 };
 kosuzu font_bank[] = {
@@ -39,7 +38,6 @@ u32 revs = 0; // revision number
 };
 
 // funcs
-void inc_version();
 void init_kene();
 
 void update();
@@ -49,7 +47,6 @@ void draw();
 int main()
 {
 	// init
-	inc_version();
 	init_kene();
 	
 	// main loop
@@ -98,18 +95,6 @@ void init_kene()
 	}
 }
 
-// function to increment version number & save to file
-void inc_version()
-{
-	FILE *rev_file = fopen("revs.bin","r+");
-	fread(&revs,sizeof(u32),1,rev_file);
-	revs++;
-	rewind(rev_file);
-	fwrite(&revs,sizeof(u32),1,rev_file);
-	fclose(rev_file);
-	printf("revision number: %d\n",revs);
-}
-
 void update()
 {
 	// event handlin
@@ -119,27 +104,9 @@ void update()
 	}
 }
 
-void draw_time()
-{
-	u32 frate = kami->framerate;
-	u32 time = kami->time;
-	u32 secs = time/frate;
-	u32 mins = secs/60;
-	char colon = ((time/(frate/2))&1) ? ':' : ' ';
-	char teststr[0x20];
-	sprintf(teststr,"TIME: %02d%c%02d",mins,colon,secs%60);
-	// draw small border around text
-	u32 len = (u32)strlen(teststr);
-	mokou_rect(fuji,7,7,2+(len*4),8, 8);
-	kosuzu_blit(borefont,teststr,fuji,8,8,len);
-}
-
 void draw()
 {
 	// clearing
 	fuji->fillp = 0xFFFF;
 	mokou_clear(fuji,7);
-	// ui drawing
-	fuji->fillp = 0xFFFF;
-	draw_time();
 }
